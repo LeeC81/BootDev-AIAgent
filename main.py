@@ -1,3 +1,4 @@
+import argparse
 import os
 
 from dotenv import load_dotenv
@@ -13,15 +14,15 @@ def main():
 
     client = genai.Client(api_key=api_key) 
 
-    #if len(sys.argv) < 2:
-    #    print("no prompt given")
-    #    sys.exit(2)
+    parser = argparse.ArgumentParser(description="Chat Bot")
+    parser.add_argument("prompt", type=str, help="User prompt")
+    args = parser.parse_args()
 
-    #prompt = sys.argv[1]
+    user_prompt = args.prompt
 
     response = client.models.generate_content(
         model="gemini-2.5-flash",
-        contents="Why is Boot.dev such a great place to learn backend development? Use one paragraph maximum.",
+        contents=user_prompt
     )
 
     if not response.usage_metadata:
