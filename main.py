@@ -41,6 +41,7 @@ def generate_content(client, messages, args):
         print("Response:")
         print(response.text)
     else:
+        print("Response:")
         print(response.text)
 
 
